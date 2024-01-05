@@ -12,7 +12,6 @@ const Hero = () => {
             <div>
                 <div className="hero-hand-icon">
                     <p>new</p>
-                    <img src={hand_icon} alt="hand-icon" />
                 </div>
                 <p>collections</p>
                 <p>for everyone</p>
@@ -21,11 +20,7 @@ const Hero = () => {
                 <div className='cursor-pointer'>Latest Collection</div>
                 <img src={arrow_icon} alt="arrow" />
             </div>
-        </div>
-
-        <div className='hero-right'>
-            <img src={hero_image} alt="hero_image" />
-        </div>       
+        </div>     
     </div>
   )
 }

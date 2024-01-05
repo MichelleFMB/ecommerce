@@ -3,7 +3,8 @@
 }
 
 .item img{
-    width: 280px;
+    width: 250px;
+    height: 400px;
 }
 
 .item p{
@@ -71,6 +72,7 @@
 
     .item img{
         width: 120px;
+        height: 200px;
     }
 
     .item-price-old{

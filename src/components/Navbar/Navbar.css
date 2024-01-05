@@ -6,11 +6,6 @@
     align-items: center;
 }
 
-.nav-logo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 .nav-logo p{
     color: #171717;
     font-size: 38px;
@@ -22,7 +17,7 @@
     align-items: center;
     list-style: none;
     gap: 50px;
-    color: #626262;
+    color: #000000;
     font-size: 17px;
     font-weight: 500;
 }
@@ -36,12 +31,9 @@
     cursor: pointer;
 }
 
-.nav_menu hr{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background: #FF4141;
+.nav_menu li:hover{
+    color: #AA1D1D;
+    font-weight: 600;
 }
 
 .nav-login-cart{

@@ -19,15 +19,14 @@ const Navbar = () => {
   return (
     <div className='navbar'>
         <div className='nav-logo'>
-          <img src={logo} alt='logo'/>
-          <p>SHOPPER</p>
+          <p>Love Nikki</p>
         </div>
         <img className='nav-dropdown' onClick={dropdown_toggle} src={nav_dropdown} alt="nav_dropdown" />
         <ul ref={menuRef} className="nav_menu">
-          <li onClick={() =>{setMenu("shop")}}><Link to='/'>Shop</Link> {menu==="shop"?<hr/>:<></>}</li>
-          <li onClick={() =>{setMenu("mens")}}><Link to='/mens'>Men</Link>{menu==="mens"?<hr/>:<></>}</li>
-          <li onClick={() =>{setMenu("womens")}}><Link to='/womens'>Women</Link>{menu==="womens"?<hr/>:<></>}</li>
-          <li onClick={() =>{setMenu("kids")}}><Link to='/kids'>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+          <li onClick={() =>{setMenu("shop")}}><Link to='/'>Home</Link> {menu==="shop"?<hr/>:<></>}</li>
+          <li onClick={() =>{setMenu("mens")}}><Link to='/mens'>Wardrobe</Link>{menu==="mens"?<hr/>:<></>}</li>
+          <li onClick={() =>{setMenu("womens")}}><Link to='/womens'>Latest Event</Link>{menu==="womens"?<hr/>:<></>}</li>
+          <li onClick={() =>{setMenu("kids")}}><Link to='/kids'>Stylist’s Arena</Link>{menu==="kids"?<hr/>:<></>}</li>
         </ul>
         <div className="nav-login-cart">
           {localStorage.getItem('auth-token')

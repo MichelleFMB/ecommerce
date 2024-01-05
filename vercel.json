@@ -1,0 +1,7 @@
+{
+    "version": 2,
+    "routes": [
+      { "src": "/backend/(.*)", "dest": "backend/index.js" },
+      { "src": "/admin/(.*)", "dest": "admin/$1" }
+    ]
+}

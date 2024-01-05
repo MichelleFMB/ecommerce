@@ -13,7 +13,7 @@ const DescriptionBox = () => {
                 the chapters and buy differents kits from special events that are very expensive.
             </p>
             <p>
-                E-commerce websites typically display products along with detailed descriptions, images, prices and any available variations (e.g., size, colors).
+                E-commerce websites typically display products along with detailed descriptions, images, prices and any available variations (e.g., size, colors, skills, etc).
             </p>
         </div>
     </div>

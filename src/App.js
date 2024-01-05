@@ -7,9 +7,9 @@ import Product from './pages/Product';
 import Cart from './pages/Cart';
 import LoginSignUp from './pages/Login-SignUp';
 import Footer from './components/Footer/Footer';
-import men_banner from './assets/banner_mens.png'
-import women_banner from './assets/banner_women.png'
-import kid_banner from './assets/banner_kids.png'
+import men_banner from './assets/12.jpg'
+import women_banner from './assets/13.jpg'
+import kid_banner from './assets/angel.jpg'
 
 
 
