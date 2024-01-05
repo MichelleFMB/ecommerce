@@ -7,11 +7,16 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
+// Configuración de variables de entorno
+const PORT = process.env.PORT || 4000;
+const MONGODB_URI = "mongodb+srv://michelleMB:gg2089bi4rt5fghua@cluster0.1gqzafv.mongodb.net/e-commerce"; //process.env.MONGODB_URI || "mongodb://localhost:27017/e-commerce";
+const VERCEL_URL = process.env.VERCEL_URL || `http://localhost:${PORT}`;
+
+// Conexión a MongoDB
+mongoose.connect(MONGODB_URI);
+
 app.use(express.json());
 app.use(cors());
-
-// Database Connection with MongoDB
-mongoose.connect("mongodb+srv://michelleMB:gg2089bi4rt5fghua@cluster0.1gqzafv.mongodb.net/e-commerce");
 
 // Api creation
 app.get("/",(req,res) => {
@@ -31,12 +36,18 @@ const upload = multer({storage:storage})
 // Creating Upload Endpoint for images
 app.use('/images', express.static('upload/images'))
 
-app.post("/upload", upload.single('product'), (req,res)=> {
+app.post("/upload", upload.single('product'), (req, res) => {
+    res.json({
+        success: 1,
+        image_url: `${VERCEL_URL}/images/${req.file.filename}`
+    });
+});
+/*app.post("/upload", upload.single('product'), (req,res)=> {
     res.json({
         success: 1,
         image_url: `http://localhost:${port}/images/${req.file.filename}`
     })
-})
+})*/
 
 // Schema for Creating Products
 const Product = mongoose.model("Product",{
@@ -115,11 +126,16 @@ app.post('/removeproduct', async(req, res) => {
 })
 
 // Creating Api for getting all products
-app.get('/allproducts', async(req, res) => {
-    let products = await Product.find({});
-    console.log("All Products Fetched");
-    res.send(products);
-})
+app.get('/allproducts', async (req, res) => {
+    try {
+      const products = await Product.find().maxTimeMS(20000); // Aumentar el tiempo de espera a 20,000 ms (20 segundos)
+      console.log("All Products Fetched");
+      res.send(products);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 // Schema creating for User model
 const Users = mongoose.model('Users',{
