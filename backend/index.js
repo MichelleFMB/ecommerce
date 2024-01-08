@@ -1,4 +1,4 @@
-const port = 4000;
+//const port = 4000; 
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -18,6 +18,7 @@ mongoose.connect(MONGODB_URI);
 app.use(express.json());
 app.use(cors());
 
+
 // Api creation
 app.get("/",(req,res) => {
     res.send("Express App is Running");
@@ -26,10 +27,10 @@ app.get("/",(req,res) => {
 //Image Storage Engine
 const storage = multer.diskStorage({
     destination: './upload/images',
-    filename: (req,file,cb)=> {
-        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    filename: (req, file, cb) => {
+        return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
-})
+});
 
 const upload = multer({storage:storage})
 
@@ -42,12 +43,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
         image_url: `${VERCEL_URL}/images/${req.file.filename}`
     });
 });
-/*app.post("/upload", upload.single('product'), (req,res)=> {
-    res.json({
-        success: 1,
-        image_url: `http://localhost:${port}/images/${req.file.filename}`
-    })
-})*/
+
 
 // Schema for Creating Products
 const Product = mongoose.model("Product",{
@@ -126,16 +122,11 @@ app.post('/removeproduct', async(req, res) => {
 })
 
 // Creating Api for getting all products
-app.get('/allproducts', async (req, res) => {
-    try {
-      const products = await Product.find().maxTimeMS(20000); // Aumentar el tiempo de espera a 20,000 ms (20 segundos)
-      console.log("All Products Fetched");
-      res.send(products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-});
+app.get('/allproducts', async(req, res) => {
+    let products = await Product.find({});
+    console.log("All Products Fetched");
+    res.send(products);
+})
 
 // Schema creating for User model
 const Users = mongoose.model('Users',{
@@ -269,10 +260,10 @@ app.post('/getcart',fetchUser,async (req, res)=>{
     res.json(userData.cartData);
 
 })
-
-app.listen(port,(error)=> {
+//port -> PORT
+app.listen(PORT,(error)=> {
     if(!error){
-        console.log("Server Running on Port " +port);
+        console.log("Server Running on Port " +PORT);
     }
     else{
         console.log("Error: " + error);
