@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
-});
+})
 
 const upload = multer({storage:storage})
 
@@ -43,6 +43,7 @@ app.post("/upload", upload.single('product'), (req, res) => {
         image_url: `/images/${req.file.filename}`
     });
 })
+
 
 // Schema for Creating Products
 const Product = mongoose.model("Product",{
